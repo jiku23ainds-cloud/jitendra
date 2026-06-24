@@ -1,9 +1,20 @@
 pipeline {
 agent any
 stages {
-stage('Check') {
+stage('Checkout') {
 steps {
-echo "Pipeline is running"
+}
+}
+git branch: 'main',
+url: 'https://github.com/YOUR_USERNAME/hello_maven.git'
+stage('Build') {
+steps {
+sh 'mvn clean package'
+}
+}
+stage('Test') {
+steps {
+sh 'mvn test'
 }
 }
 }
